@@ -1,0 +1,364 @@
+/* custom.css */
+
+/* SIDEBAR */
+#sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 280px;
+	height: 100%;
+	background: var(--light);
+	z-index: 2000;
+	font-family: var(--lato);
+	transition: .3s ease;
+	overflow-x: hidden;
+	scrollbar-width: none;
+}
+#sidebar::--webkit-scrollbar {
+	display: none;
+}
+#sidebar.hide {
+	width: 60px;
+}
+#sidebar .brand {
+	font-size: 24px;
+	font-weight: 700;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	color: var(--blue);
+	position: sticky;
+	top: 0;
+	left: 0;
+	background: var(--light);
+	z-index: 500;
+	padding-bottom: 20px;
+	box-sizing: content-box;
+}
+#sidebar .brand .bx {
+	min-width: 60px;
+	display: flex;
+	justify-content: center;
+}
+#sidebar .side-menu {
+	width: 100%;
+	margin-top: 48px;
+}
+#sidebar .side-menu li {
+	height: 48px;
+	background: transparent;
+	margin-left: 6px;
+	border-radius: 48px 0 0 48px;
+	padding: 4px;
+}
+#sidebar .side-menu li.active {
+	background: var(--grey);
+	position: relative;
+}
+#sidebar .side-menu li.active::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	top: -40px;
+	right: 0;
+	box-shadow: 20px 20px 0 var(--grey);
+	z-index: -1;
+}
+#sidebar .side-menu li.active::after {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	bottom: -40px;
+	right: 0;
+	box-shadow: 20px -20px 0 var(--grey);
+	z-index: -1;
+}
+#sidebar .side-menu li a {
+	width: 100%;
+	height: 100%;
+	background: var(--light);
+	display: flex;
+	align-items: center;
+	border-radius: 48px;
+	font-size: 16px;
+	color: var(--dark);
+	white-space: nowrap;
+	overflow-x: hidden;
+}
+#sidebar .side-menu.top li.active a {
+	color: var(--blue);
+}
+#sidebar.hide .side-menu li a {
+	width: calc(48px - (4px * 2));
+	transition: width .3s ease;
+}
+#sidebar .side-menu li a.logout {
+	color: var(--red);
+}
+#sidebar .side-menu.top li a:hover {
+	color: var(--blue);
+}
+#sidebar .side-menu li a .bx {
+	min-width: calc(60px  - ((4px + 6px) * 2));
+	display: flex;
+	justify-content: center;
+}
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group select, 
+.form-group input[type="text"], 
+.form-group textarea, 
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form-group div {
+    display: flex;
+    align-items: center;
+}
+
+.form-group div input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.form-group {
+    margin-bottom: 23px; 
+}
+
+/* Adicione isso ao seu arquivo style.css ou custom.css */
+.section-divider {
+    border: none; /* Remove a borda padrão */
+    border-top: 2px solid #ccc; /* Adiciona uma borda superior de 2 pixels de largura e cor cinza */
+    margin: 20px 0; /* Adiciona uma margem superior e inferior de 20 pixels */
+}
+
+/* Adicione este código ao seu arquivo custom.css */
+#content nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#content nav .nav-link {
+    order: 1; /* Move o link "Categories" para a esquerda */
+}
+
+#content nav form {
+    order: 2; /* Move o formulário para o centro */
+}
+
+#content nav .notification,
+#content nav .profile {
+    order: 3; /* Move os ícones de notificação e perfil para a direita */
+}
+
+/* Para telas menores que 576px */
+@media screen and (max-width: 576px) {
+    .form-group {
+        margin-bottom: 15px; /* Ou qualquer outro valor desejado */
+    }
+
+    .form-group label {
+        font-size: 14px; /* Reduz o tamanho da fonte do label */
+    }
+
+    .form-group select,
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        width: 100%; /* Define a largura como 100% para preencher o contêiner pai */
+    }
+
+    .form-group input[type="submit"] {
+        width: 100%; /* Define a largura como 100% para preencher o contêiner pai */
+    }
+
+    .form-group div {
+        flex-direction: column; /* Altera a direção do flex para coluna */
+    }
+}
+
+/* custom.css */
+
+/* SIDEBAR */
+/* ... Seu código do sidebar aqui ... */
+
+/* Formulário */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 100%; /* Alterado para se adaptar à largura máxima da tela */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group select,
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+    width: 100%; /* Alterado para ocupar toda a largura do contêiner pai */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Para incluir o padding na largura total */
+}
+
+.form-group input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form-group div {
+    display: flex;
+    align-items: center;
+}
+
+.form-group div input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.form-group {
+    margin-bottom: 23px;
+}
+
+/* Responsividade do formulário */
+@media screen and (max-width: 768px) {
+    form {
+        padding: 15px; /* Reduz o padding do formulário */
+    }
+
+    .form-group label {
+        font-size: 14px; /* Reduz o tamanho da fonte do label */
+    }
+
+    .form-group select,
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        padding: 8px; /* Reduz o padding dos campos */
+    }
+
+    .form-group input[type="submit"] {
+        padding: 10px 15px; /* Reduz o padding do botão de envio */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    form {
+        padding: 10px; /* Reduz ainda mais o padding do formulário */
+    }
+
+    .form-group label {
+        font-size: 12px; /* Reduz ainda mais o tamanho da fonte do label */
+    }
+
+    .form-group select,
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        padding: 6px; /* Reduz ainda mais o padding dos campos */
+    }
+
+    .form-group input[type="submit"] {
+        padding: 8px 12px; /* Reduz ainda mais o padding do botão de envio */
+    }
+}
+
+.custom-textarea {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.custom-textarea textarea {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.custom-textarea textarea:focus {
+    background-color: #ffffff;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+/* Estilo para tornar a opção visualmente desabilitada, mas ainda selecionável */
+select:disabled option[disabled] {
+    display: none;
+}
+
+
+
+
+
+
+
+
+

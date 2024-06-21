@@ -1,0 +1,167 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #EEEEEE;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 420px;
+    background: #5F5AA2;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    padding: 0px 50px;
+}
+
+h3.subtitle, label.subtitle {
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.input-box label {
+    margin-top: 15px; /* Adicionando margem superior para levantar as labels */
+}
+
+
+.wrapper p {
+    font-size: 15px;
+    margin: 25px 25px 0 25px;
+}
+
+.wrapper .mensagem-recuperar {
+    text-align: center;
+}
+
+.wrapper .recuperar-texto {
+    text-align: justify;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    margin: 40px 0 60px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 50px;
+    font-style: italic;
+    background: none;
+    border: none;
+    outline: none;
+    border: 1px solid #FFFFFF;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box i {
+    position: absolute;
+    left: 20px;
+    top: 10px; /* Adjust the top value to align the icon */
+    font-size: 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: center;
+    font-size: 14.5px;
+    margin: 25px 0 25px;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 25px 0 40px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #355691;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 10px; 
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field input {
+    width: calc(100% - 40px); /* Ajusta o tamanho do input para deixar espaço para o ícone */
+    height: 50px;
+    font-style: italic;
+    background: none;
+    border: none;
+    outline: none;
+    border: 1px solid #FFFFFF;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 40px; /* Ajusta o padding para acomodar o ícone */
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    top: 50%; /* Centraliza verticalmente o ícone */
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+

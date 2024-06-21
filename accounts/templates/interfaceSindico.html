@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/interfaceSindico.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <title>Document</title>
+</head>
+<body>
+ 
+    <div class="container">
+        <div class="sindico-info">
+            <h1><b id="sindico-nome">Nome do Síndico</b></h1>
+            <p>Síndico</p>
+        </div>
+        <div class="content">
+            <div class="left-section">
+                <h2><b>Consulta</b></h2>
+                <p>Pesquise por um relatório específico</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquise um relatório">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="historico">
+                    <h2><b>Histórico</b></h2>
+                    <p>Confira o seu histórico de pesquisa</p>
+                </div>
+            </div>
+            <div class="right-section">
+                <h2><b>Registrar</b></h2>
+                <p>Crie um relatório</p>
+                <a href="{% url 'registro_checklist' %}" class="add-report-btn">
+                    <span class="plus-icon">+</span>
+                    Adicionar relatório
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'JS/script.js' %}"></script>
+
+</body>
+</html>

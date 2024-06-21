@@ -1,0 +1,288 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!--BOOTSTRAP-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'custom.css' %}">
+
+    <title>IntelliAdmin</title>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="{% url 'home' %}" class="brand">
+            <i class='bx bxs-check-circle' ></i>
+            <span class="text">IntelliAdmin</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+
+                <a href="{% url 'home_dashboard'%}">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'register_checklist' %}">
+                    <i class='bx bx-check' ></i>
+                    <span class="text">CheckList</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-doughnut-chart' ></i>
+                    <span class="text">Analytics</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-message-dots' ></i>
+                    <span class="text">Message</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-group' ></i>
+                    <span class="text">Team</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#">
+                    <i class='bx bxs-cog' ></i>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bxs-log-out-circle' ></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu' ></i>
+            <a href="#" class="nav-link">Categories</a>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            <a href="#" class="notification">
+                <i class='bx bxs-bell' ></i>
+                <span class="num">8</span>
+            </a>
+            <a href="#" class="profile">
+                <img src="{% static 'img/people.png' %}">
+            </a>
+        </nav>
+        
+<!-- Exibição de mensagens de erro ou sucesso -->
+        {% if messages %}
+            {% for message in messages %}
+             <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}" role="alert">
+                {{ message }}
+             </div>
+            {% endfor %}
+        {% endif %}
+        
+        <!-- NAVBAR -->
+        <!-- FORMULÁRIO -->
+    <form method="POST" enctype="multipart/form-data" id="checklist-form" action="{% url 'auth_checklist' %}">
+    {% csrf_token %}
+
+    
+    <h1>Checklist <i class='bx bx-check-circle' ></i></h1>
+    <hr class="section-divider">
+
+    <div class="form-group">
+        <label for="id_condominio"> <h3>Informações do Condomínio <i class='bx bx-building-house'></i></h3></label>
+        <select name="condominio" id="id_condominio">
+            <option value="" >Escolha o Condomínio</option>
+            <option value="CondomínioA">Condomínio A</option>
+            <option value="CondomínioB">Condomínio B</option>
+            <option value="CondomínioC">Condomínio C</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="id_torre">Torre </label>
+        <select name="torre" id="id_condominio">
+            <option value="">Escolha a Torre </option>
+            <option value="TorreA">Torre A</option>
+            <option value="TorreB">Torre B</option>
+            <option value="TorreC">Torre C</option>
+            <!--adicionar opção outros, que seja possível ter uma options "outros" que tenha um input com o name e id dessa option-->
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="id_andar">Andar:</label>
+        <select name="andar" id="id_andar">
+            <option value="">Escolha o Andar</option>
+            <option value="andar1">Andar 1</option>
+            <option value="andar2">Andar 2</option>
+            <option value="andar3">Andar 3</option>
+           <!--adicionar opção outros, que seja possível ter uma options "outros" que tenha um input com o name e id dessa option-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_apartamento">Apartamento:</label>
+        <select name="apartamento" id="id_apartamento">
+            <option value="">Escolha o Apartamento</option>
+            <option value="apartamento1">Apartamento n° 1</option>
+            <option value="apartamento2">Apartamento n° 2</option>
+            <option value="apartamento3">Apartamento n° 3</option>
+             <!--adicionar opção outros, que seja possível ter uma options "outros" que tenha um input com o name e id dessa option-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="areas_comuns">Áreas Comuns:</label>
+        <select id="areas_comuns" name="areas_comuns">
+            <option value="">Escolha a Área Comum</option>
+            <option value="corredorPrincipal">Corredor Principal</option>
+            <option value="escadas">Escadas</option>
+            <option value="elevadores">Elevadores</option>
+            <option value="garagem">Garagem</option>
+            <option value="salaoFestas">Salão de Festas</option>
+            <option value="academia">Academia</option>
+            <option value="piscina">Piscina</option>
+            <option value="playground">Playground</option>
+            <option value="quadraEsportiva">Quadra Esportiva</option>
+            <option value="churrasqueira">Churrasqueira</option>
+            <option value="salaReunioes">Sala de Reuniões</option>
+            <option value="salaJogos">Sala de Jogos</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="areas_externas">Áreas Externas:</label>
+        <select id="areas_externas" name="areas_externas">
+            <option value="">Escolha a Área Externa</option>
+            <option value="estacionamento">Estacionamento</option>
+            <option value="jardim">Jardim</option>
+            <option value="quadraTennis">Quadra de Tênis</option>
+            <option value="quadraFutebol">Quadra de Futebol</option>
+            <option value="patio">Pátio</option>
+            <option value="ciclovia">Ciclovia</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="outros">Outros:</label>
+        <input type="text" name="outros" id="id_outros" placeholder="Especifique o local (ex: Condomínio X, Torre Y, Andar Z, corredor em frente a Área Comum: Academia )" >
+        </div>
+    </div>
+    
+    <h3>Detalhes da Ocorrência <i class='bx bx-error-circle'></i></h3>
+    <hr class="section-divider">
+    <div class="form-group">
+        <label for="id_apartamento">Prioridade:</label>
+        <select name="prioridade" id="id_apartamento">
+            <option value="" disabled>Escolha a Prioridade</option>
+            <option value="baixa">Baixa</option>
+            <option value="média">Média</option>
+            <option value="alta">Alta</option>
+            <option value="urgente">Urgente</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="id_categoria">Categoria do Problema:</label>
+        <select name="categoria" id="id_categoria">
+            <option value="" disabled>Escolha a Categoria</option>
+            <option value="estrutural">Estrutural</option>
+            <option value="administrativo" >Administrativo</option>
+            <option value="seguranca">Segurança</option>
+            <option value="emergencia">Emergência</option>
+            <option value="sinistro">Sinistro</option>
+            <option value="recursosHumanos">Recursos Humanos</option>
+            <option value="manutencaoRecorrente">Manutenção Recorrente</option>
+            <option value="limpeza">Limpeza</option>
+            <option value="jardinagem">Jardinagem</option>
+            <option value="insetosPragas">Insetos/Pragas</option>
+            <option value="barulho">Barulho</option>
+            <option value="vizinhos">Relações com Vizinhos</option>
+            <!-- Adicione outras opções conforme necessário -->
+        </select>
+    </div>
+    
+    
+    <div class="form-group">
+        <label for="id_descricao">Descrição do Problema:
+        </label>
+            <div class="custom-textarea"></div>
+                <textarea id="id_descricao" name="descricao_problema" placeholder="Descreva o problema aqui..." rows="4" cols="50" required></textarea>
+            </div>    
+    </div>
+    
+    <div class="form-group">
+        <label for="id_uploads">Adicionar upload:</label>
+        <input type="file" name="uploads" id="id_uploads" required>
+    </div>
+
+    <div class="form-group">
+        <label for="id_data_criacao">Data do Upload</label>
+        <input type="date" name="data_upload" id="id_data_upload" class="form-control" required>
+    </div>
+    
+
+    <h3>Autor da Ocorrência  <i class='bx bx-user'></i></h3>
+    <hr class="section-divider">
+    <div class="form-group">
+        <label for="id_autor_tipo">Tipo de Autor </label>
+        <select name="autor_tipo" id="id_autor_tipo">
+            <option value="sindicoAdm">Síndico/Administrador</option>
+            <option value="morador">Morador</option>
+            <option value="outros">Outros</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="id_nome_autor">Nome:</label>
+        <input type="text" name="nome_autor" id="id_nome_autor" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="id_cpf_autor">CPF:</label>
+        <input type="text" name="cpf_autor" id="id_cpf_autor" required>
+    </div>
+
+    
+    
+    <div class="form-group">
+        <input type="submit" value="Enviar">
+    </div>
+</form>
+
+ 
+    </section>
+    <!-- CONTENT -->
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

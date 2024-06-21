@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliAdmin</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'telaLogin.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="{% url 'alterar_senha' %}" method="POST">
+            {% csrf_token %}
+            <h1>IntelliAdmin</h1>
+            <div class="register-link">
+                <p>Conclua o processo de alteração de senha</p>
+            </div>
+
+            <div class="input-box">
+                <h3 class="subtittle">Nova Senha</h3>
+                <i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11M5 11H19C20.1046 11 21 11.8954 21 13V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V13C3 11.8954 3.89543 11 5 11Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg></i>                    
+                <input type="password" name="nova_senha" placeholder="Escreva sua nova senha" required>
+            </div>
+
+            <div class="input-box">
+                <h3 class="subtittle">Confirme a Nova Senha</h3>
+                <i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11M5 11H19C20.1046 11 21 11.8954 21 13V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V13C3 11.8954 3.89543 11 5 11Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg></i>                    
+                <input type="password" name="confirmar_nova_senha" placeholder="Confirme sua nova senha" required>
+            </div>
+
+            <button type="submit" class="btn">Alterar</button>
+            
+        </form>
+    </div>
+
+</body>
+
+</html>

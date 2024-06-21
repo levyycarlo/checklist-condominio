@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sobre.css' %}">
+
+    <title>Sobre</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="{% url 'home' %}" class="navbar-logo">IntelliAdmin</a>
+            <ul class="navbar-menu">
+                <li class="navbar-item"><a href="{% url 'sobre' %}" class="navbar-link">Sobre</a></li>
+
+                
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1><b>Nossa missão</b></h1>
+        <p>
+            Buscando oferecer as melhores soluções de forma prática<br>
+            e simples nos dilemas vivenciados no cotidiano de um<br>
+            ambiente condominial, o IntelliAdmin surge como uma<br>
+            ferramenta capaz de atender as mais diversas necessidades<br>
+            dos seus clientes, integrando modernidade em uma interface<br>
+            amigável e intuitiva.
+        </p>
+
+        <h1><b>Nossa equipe</b></h1>
+        <div class="team">
+            <div class="team-member">
+                <div class="image-placeholder">Imagem</div>
+                <p><b>Leôncio Júnior</b></p>
+            </div>
+            <div class="team-member">
+                <div class="image-placeholder">Imagem</div>
+                <p><b>Levy Carlo Portela</b></p>
+            </div>
+            <div class="team-member">
+                <div class="image-placeholder">Imagem</div>
+                <p><b>Levi Tude</b></p>
+            </div>
+            <div class="team-member">
+                <div class="image-placeholder">Imagem</div>
+                <p><b>Solon Padilha</b></p>
+            </div>
+            <div class="team-member">
+                <div class="image-placeholder">Imagem</div>
+                <p><b>Lucas Batista</b></p>
+            </div>
+            <div class="team-member">
+                <div class="image-placeholder">Imagem</div>
+                <p><b>Guilherme Vilã</b></p>
+            </div>
+        </div>
+
+        <h1><b>Meios para contato</b></h1>
+        <p>E-mail: intelliadmin@gmail.com</p>
+        <p>Telefone: 3232-7272</p>
+    </div>
+</body>
+</html>
