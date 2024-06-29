@@ -32,7 +32,9 @@
 
         <form method="POST" action="{% url 'sindico_login' %}">
             {% csrf_token %}
-            <h1>IntelliAdmin</h1>
+            <a href="{% url 'home'%}" class="button-home" style="color:aliceblue;">
+                <h1>IntelliAdmin</h1>
+            </a>
             <div class="register-link">
                 <p>Cadastro de Sindico?
                 <a href="{% url 'cadastrar_sindico' %}">Entre aqui</a></p>

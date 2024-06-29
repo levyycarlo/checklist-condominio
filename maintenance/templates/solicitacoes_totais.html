@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <title>IntelliAdmin</title>
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="{% url 'home' %}" class="brand">
+            <i class='bx bxs-check-circle'></i>
+            <span class="text">IntelliAdmin</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <a href="{% url 'home_dashboard'%}">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'register_checklist' %}">
+                    <i class='bx bx-check'></i>
+                    <span class="text">CheckList</span>
+                </a>
+            </li>
+            <li>
+				<a href="{% url 'logs'%}">
+					<i class='bx bxs-group'></i>
+					<span class="text">Logs</span>
+				</a>
+			</li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="{% url 'home'%}" class="logout">
+                    <i class='bx bxs-log-out-circle'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <a href="#" class="nav-link">Categories</a>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            <a href="#" class="notification">
+                <i class='bx bxs-bell'></i>
+                <span class="num">8</span>
+            </a>
+            <a href="#" class="profile">
+                <box-icon name='user' color='#007bff'></box-icon>
+            </a>
+        </nav>
+        <!-- NAVBAR -->
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}"
+                role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- MAIN CONTENT -->
+        <main class="container mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Registro de Solicitações</h2>
+                    <br>
+                    <div class="row">
+                        {% for checklist in page_obj %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card" data-status="{{ checklist.status }}">
+                                <div class="card-header d-flex justify-content-between align-items-center {% if checklist.status == 'concluido' %}bg-success
+                              {% elif checklist.status == 'pendente' %}bg-danger
+                              {% elif checklist.status == 'andamento' %}bg-warning
+                              {% endif %}">
+                                    <span class="text-white">
+                                        <b> Status: {{ checklist.get_status_display }}</b>
+                                    </span>
+                                    <a href="{% url 'manage_solicit' checklist.id %}">
+                                        <button class="edit-btn" data-id="{{ checklist.id }}"
+                                            style="background: none; border: none; cursor: pointer;">
+                                            <box-icon name='edit' color="#ffffff"></box-icon>
+                                        </button>
+                                    </a>
+
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ checklist.get_condominio_display }}</h5>
+                                    <p class="card-text">Autor: {{ checklist.nome_autor }}</p>
+                                    <p class="card-text">Data: {{ checklist.data_checklist }}</p>
+                                    <p class="card-text">Prioridade: {{ checklist.get_prioridade_display }}</p>
+                                    <p class="card-text">Categoria: {{ checklist.get_categoria_display }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <!-- MAIN CONTENT -->
+
+                    <!-- NAVEGAÇÃO DA PÁGINA -->
+                    <nav aria-label="Navegação de página exemplo">
+                        <ul class="pagination">
+
+                            {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1" aria-label="Primeira">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Primeira</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                    aria-label="Anterior">
+                                    <span aria-hidden="true">&lsaquo;</span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% for num in page_obj.paginator.page_range %}
+                            <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próximo">
+                                    <span aria-hidden="true">&rsaquo;</span>
+                                    <span class="sr-only">Próximo</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"
+                                    aria-label="Última">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Última</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    <!--END NAVEGAÇÃO DA PÁGINA -->
+                </div>
+            </div>
+        </main>
+        <!-- END MAIN CONTENT -->
+
+    </section>
+    <!-- CONTENT -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>   
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>

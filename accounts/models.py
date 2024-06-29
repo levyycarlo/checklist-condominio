@@ -1,40 +1,38 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+
 
 class CadastroSindicoManager(BaseUserManager):
-    def create_user(self, email, nome, cpf, data_nascimento, inicio_mandato, fim_mandato, password=None):
+    def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('O email deve ser fornecido')
         email = self.normalize_email(email)
-        user = self.model(email=email, nome=nome, cpf=cpf, data_nascimento=data_nascimento,
-                          inicio_mandato=inicio_mandato, fim_mandato=fim_mandato)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, nome, cpf, data_nascimento, inicio_mandato, fim_mandato, password=None):
-        user = self.create_user(email, nome, cpf, data_nascimento, inicio_mandato, fim_mandato, password)
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, **extra_fields)
 
-class CadastroSindico(AbstractBaseUser, PermissionsMixin):
+
+class CadastroSindico(AbstractBaseUser):
     email = models.EmailField(unique=True)
-    nome = models.CharField(max_length=30)
-    data_nascimento = models.DateField()
-    inicio_mandato = models.DateField()
-    fim_mandato = models.DateField()
-    cpf = models.CharField(max_length=14, unique=True)
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    data_nascimento = models.DateField(blank=True, null=True)
+    inicio_mandato = models.DateField(blank=True, null=True)
+    fim_mandato = models.DateField(blank=True, null=True)
+    cpf = models.CharField(max_length=14, unique=True, blank=True, null=True)
     password = models.CharField(max_length=128)
 
-    last_login = None
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nome', 'cpf', 'data_nascimento', 'inicio_mandato', 'fim_mandato']
+    REQUIRED_FIELDS = []
 
     objects = CadastroSindicoManager()
 
@@ -47,10 +45,8 @@ class CadastroSindico(AbstractBaseUser, PermissionsMixin):
     def check_password(self, raw_password):
         return check_password(raw_password, self.password)
 
-    @property
-    def is_staff(self):
-        return self.is_admin
+    def has_perm(self, perm, obj=None):
+        return True
 
-    @property
-    def is_superuser(self):
-        return self.is_superuser
+    def has_module_perms(self, app_label):
+        return True

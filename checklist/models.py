@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class Imagem(models.Model):
-    uploads = models.ImageField(upload_to='uploads/')
+    upload = models.ImageField(upload_to='uploads/')
 
 class Checklist(models.Model):
     CONDOMINIOS_CHOICES = [
@@ -82,6 +82,12 @@ class Checklist(models.Model):
         ('ciclovia', 'Ciclovia'),
         # Adicione mais opções conforme necessário
     ]
+
+    STATUS_CHOICES = [
+        ('pendente', 'Pendente'),
+        ('concluido', 'Concluído'),
+        ('em_andamento', 'Em andamento'),
+    ]
     
     
     condominio = models.CharField(max_length=100, choices=CONDOMINIOS_CHOICES, null= True, blank= True, default=True)
@@ -94,12 +100,15 @@ class Checklist(models.Model):
     prioridade = models.CharField(max_length=100, choices=PRIORIDADE_CHOICES)
     categoria = models.CharField(max_length=100, choices=CATEGORIA_CHOICES, null= True, blank= True, default=True)
     descricao_problema = models.TextField()
-    imagem = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    upload = models.ImageField(upload_to='uploads/', blank=True, null=True)
     autor_tipo = models.CharField(max_length=100)
     nome_autor = models.CharField(max_length=100)
     cpf_autor = models.CharField(max_length=14)
     data_upload = models.DateTimeField(default=timezone.now)
     data_checklist = models.DateTimeField(default=timezone.now, blank=True, null=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente',blank=True, null=True)
+    resolucao_ocorrencia = models.TextField(default="Resolução pendente", blank=True, null=True)
+    data_resolucao_ocorrencia = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
 
     def __str__(self):

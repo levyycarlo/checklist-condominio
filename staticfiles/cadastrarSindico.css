@@ -1,0 +1,175 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #EEEEEE;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 800px;
+    background: #5F5AA2;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    padding: 0px 35px;
+}
+
+h3 {
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.wrapper p {
+    font-size: 15px;
+    margin: 15px 15px 0 15px;
+}
+
+.wrapper .mensagem-recuperar {
+    text-align: center;
+}
+
+.wrapper .recuperar-texto {
+    text-align: justify;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 25px 0 45px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    font-style: italic;
+    background: none;
+    border: none;
+    outline: none;
+    border: 1px solid #FFFFFF;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #fff;
+    padding-left: 35px;
+}
+
+.input-box input[type="date"] {
+    padding: 0 20px; /* Ajusta o padding para os campos de data */
+}
+
+.input-box i {
+    position: absolute;
+    left: 20px;
+    top: 45px;
+    font-size: 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: center;
+    font-size: 14.5px;
+    margin: 25px 0 25px;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+    margin: px 0;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 25px 0 40px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #355691;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    align-self: center;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Adicione essas regras ao seu arquivo cadastrarSindico.css */
+
+.alert {
+    margin-bottom: 20px; /* Adiciona um espaço abaixo do alerta */
+}
+
+/* Define o estilo para as mensagens de erro */
+.error-message {
+    color: #721c24; /* Cor do texto para mensagens de erro */
+    background-color: #f8d7da; /* Cor de fundo para mensagens de erro */
+    border-color: #f5c6cb; /* Cor da borda para mensagens de erro */
+}
+
+/* Define o estilo para as mensagens de sucesso */
+.success-message {
+    color: #155724; /* Cor do texto para mensagens de sucesso */
+    background-color: #d4edda; /* Cor de fundo para mensagens de sucesso */
+    border-color: #c3e6cb; /* Cor da borda para mensagens de sucesso */
+}
+
+/* Estilo para o botão de fechar o alerta */
+.close {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #000;
+    opacity: 0.5;
+    transition: opacity 0.15s linear;
+}
+
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    opacity: 0.75;
+}

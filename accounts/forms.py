@@ -60,8 +60,9 @@ class CadastroSindicoForm(forms.ModelForm):
         if CadastroSindico.objects.filter(cpf=cpf).exists():
             raise forms.ValidationError(_('Este CPF já está em uso. Por favor, escolha outro.'), code='cpf_in_use')
 
-        if not cpf.isdigit() or len(cpf) != 11:
-            raise forms.ValidationError(_('CPF inválido. Deve conter apenas números e ter 11 dígitos.'), code='invalid_cpf')
+        
+        if not cpf.isdigit() or len(cpf) != 14:
+            raise forms.ValidationError(_('CPF inválido. Deve conter apenas números e ter 14 dígitos.'), code='invalid_cpf')
 
         return cpf
     

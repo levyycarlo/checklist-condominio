@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ChecklistForm
+from .models import Checklist
 from django.contrib import messages
 
 def auth_checklist(request):
@@ -29,5 +30,43 @@ def register_checklist(request):
     return render(request, 'register_checklist.html', {'form': form})
 
 def home_dashboard(request):
+    # Contagem de status pendente
+    pendente_cont = Checklist.objects.filter(status='pendente').count()
 
-    return render(request, 'dashboard.html')
+    # Contagem de status concluído
+    concluido_cont = Checklist.objects.filter(status='concluido').count()
+
+    contagem_total = Checklist.objects.count()
+    return render(request, 'dashboard.html', {
+        'pendente': pendente_cont,
+        'concluido': concluido_cont,
+        'contagem_total':contagem_total
+    })
+
+
+def auth_update_checklist(request, checklist_id):
+    checklist = get_object_or_404(Checklist, id=checklist_id)
+    
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        resolucao_ocorrencia = request.POST.get('resolucao_ocorrencia')
+
+        if status and resolucao_ocorrencia:
+            # Atualiza os campos do checklist
+            checklist.status = status
+            checklist.resolucao_ocorrencia = resolucao_ocorrencia
+            checklist.save()
+
+            messages.success(request, 'Checklist atualizado com sucesso.')
+            return redirect('solicitacoes_totais')  # Redireciona para a lista de solicitações totais
+        else:
+            if not status:
+                messages.warning(request, 'É obrigatório mudar o status.')
+            if not resolucao_ocorrencia:
+                messages.warning(request, 'É obrigatório responder a resolução do problema.')
+    else:
+        # Caso não seja uma requisição POST, apenas renderiza o template com os dados do checklist
+        return render(request, 'manage_solicitacoes.html', {'checklist': checklist})
+
+    # Se houver algum erro de validação ou não for um POST válido, retorna para o template com as mensagens de erro
+    return render(request, 'manage_solicitacoes.html', {'checklist': checklist})

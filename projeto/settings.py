@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'frontend',
     'accounts',
     'sindico_app',
-    'checklist'
+    'checklist',
+    'maintenance',
+    'documents'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'documents.middleware.AdminActionsLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'projeto.urls'
@@ -92,6 +95,8 @@ DATABASES = {
     }
 }
 
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -113,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'PT-BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -125,6 +130,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static"
@@ -135,6 +144,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "frontend/static",
     BASE_DIR / "sindico_app/static",
     BASE_DIR / "checklist/static",
+    BASE_DIR / "maintenance/static",
 ]
 
 # Default primary key field type

@@ -1,0 +1,79 @@
+/* SIDEBAR */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px; /* Largura inicial do sidebar */
+    height: 100%;
+    background: var(--light);
+    z-index: 2000; /* Z-index alto para ficar na frente */
+    transition: .3s ease;
+}
+
+#sidebar.hide {
+    width: 60px; /* Largura quando o sidebar está oculto */
+}
+
+/* CONTENT */
+#content {
+    position: relative;
+    width: calc(100% - 280px); /* Ajusta a largura do conteúdo para considerar o sidebar */
+    left: 280px; /* Posiciona o conteúdo ao lado do sidebar */
+    transition: width 0.3s ease, left 0.3s ease;
+    padding: 20px; /* Adiciona um padding para separar o conteúdo das bordas da tela */
+}
+
+@media screen and (max-width: 3000px) {
+    /* Quando a tela for menor que 768px (mobile) */
+    #content {
+        width: 100%; /* Ocupa toda a largura */
+        left: 0; /* Posiciona o conteúdo no início da tela */
+    }
+}
+
+/* Informações Registradas */
+.container {
+    width: 100%; /* Garante que a largura da container seja 100% */
+    margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
+}
+
+.container h2 {
+    font-size: 24px; /* Tamanho do título reduzido para se ajustar melhor */
+    margin-bottom: 20px; /* Espaçamento inferior aumentado para separar visualmente as seções */
+}
+
+.container section {
+    margin-bottom: 40px; /* Espaçamento inferior aumentado entre as seções */
+}
+
+.container table {
+    width: 100%; /* Tabela ocupa toda a largura do container */
+    margin-bottom: 20px; /* Espaçamento inferior para separar as tabelas */
+}
+
+.container table th {
+    width: 30%; /* Largura das colunas de cabeçalho */
+}
+
+.container table td {
+    width: 70%; /* Largura das colunas de dados */
+}
+
+@media screen and (max-width: 767px) {
+    /* Ajustes para telas menores que 768px */
+    .container table th,
+    .container table td {
+        width: 100%; /* Torna as colunas ocupando toda a largura em telas pequenas */
+        display: block; /* Exibe cada célula em bloco para ocupar o espaço disponível */
+        text-align: left; /* Alinha o texto à esquerda para melhor legibilidade */
+    }
+}
+
+/* Feedbacks de erro ou sucesso */
+.messages {
+    margin-top: 20px; /* Espaçamento superior para separar das seções anteriores */
+}
+
+.messages .alert {
+    margin-bottom: 10px; /* Espaçamento inferior entre mensagens */
+}

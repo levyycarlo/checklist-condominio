@@ -13,6 +13,7 @@ class ChecklistForm(forms.ModelForm):
             'condominio': forms.Select(choices=Checklist.CONDOMINIOS_CHOICES),
             'torre': forms.Select(choices=Checklist.TORRE_CHOICES),
             'andar': forms.Select(choices=Checklist.ANDAR_CHOICES),
+            'upload': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
             'apartamento': forms.Select(choices=Checklist.APARTAMENTO_CHOICES),
             'outros': forms.TextInput(attrs={'placeholder': 'Especifique o local (ex: Condomínio X, Torre Y, Andar Z, corredor em frente a Área Comum: Academia )'}),
             'prioridade': forms.Select(choices=Checklist.PRIORIDADE_CHOICES),
@@ -46,11 +47,11 @@ class ChecklistForm(forms.ModelForm):
         return data_checklist
          
     def clean_imagem(self):
-        imagem = self.cleaned_data.get('imagem')
-        if imagem:
-            if not imagem.name.endswith(('.jpeg', '.png', '.gif')):
+        upload = self.cleaned_data.get('upload')
+        if upload:
+            if not upload.name.endswith(('.jpeg', '.png', '.gif')):
                 raise forms.ValidationError("Formato de arquivo de imagem inválido. Apenas JPEG, PNG e GIF são suportados.")
-        return imagem
+        return upload
 
     def clean_nome_autor(self):
         nome_autor = self.cleaned_data.get('nome_autor')

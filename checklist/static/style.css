@@ -306,102 +306,135 @@ body {
 
 
 
-/* MAIN */
-#content main {
-	width: 100%;
-	padding: 36px 24px;
-	font-family: var(--poppins);
-	max-height: calc(100vh - 56px);
-	overflow-y: auto;
+.box-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
 }
-#content main .head-title {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	grid-gap: 16px;
-	flex-wrap: wrap;
+
+.box-info li {
+    background: var(--light);
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave de cores */
 }
-#content main .head-title .left h1 {
-	font-size: 36px;
-	font-weight: 600;
-	margin-bottom: 10px;
-	color: var(--dark);
+
+.box-info li:hover {
+    background-color: var(--light-blue); /* Cor de fundo ao passar o mouse */
 }
-#content main .head-title .left .breadcrumb {
-	display: flex;
-	align-items: center;
-	grid-gap: 16px;
+
+.box-info li a {
+    text-decoration: none;
+    color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
-#content main .head-title .left .breadcrumb li {
-	color: var(--dark);
+
+.box-info li .text {
+    margin-top: 12px;
 }
-#content main .head-title .left .breadcrumb li a {
-	color: var(--dark-grey);
-	pointer-events: none;
+
+.box-info li .text h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
-#content main .head-title .left .breadcrumb li a.active {
-	color: var(--blue);
-	pointer-events: unset;
+
+.box-info li .text p {
+    margin: 0;
 }
-#content main .head-title .btn-download {
-	height: 36px;
-	padding: 0 16px;
-	border-radius: 36px;
-	background: var(--blue);
-	color: var(--light);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	grid-gap: 10px;
-	font-weight: 500;
+
+/* Estilizando cada ID individualmente */
+#solic-concluidas {
+    background-color: var(--blue); /* Exemplo de cor de fundo para o item */
+    color: var(--light); /* Exemplo de cor de texto para o item */
+}
+
+#solic-totais {
+    background-color: var(--yellow); /* Exemplo de cor de fundo para o item */
+    color: var(--dark); /* Exemplo de cor de texto para o item */
+}
+
+#solic-pendentes {
+    background-color: var(--orange); /* Exemplo de cor de fundo para o item */
+    color: var(--light); /* Exemplo de cor de texto para o item */
 }
 
 
 
 
-#content main .box-info {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	grid-gap: 24px;
-	margin-top: 36px;
+
+
+.box-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
 }
-#content main .box-info li {
-	padding: 24px;
-	background: var(--light);
-	border-radius: 20px;
-	display: flex;
-	align-items: center;
-	grid-gap: 24px;
+
+.box-info li {
+    background: var(--light);
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave de cores */
 }
-#content main .box-info li .bx {
-	width: 80px;
-	height: 80px;
-	border-radius: 10px;
-	font-size: 36px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+
+.box-info li:hover {
+    background-color: var(--light-blue); /* Cor de fundo ao passar o mouse */
 }
-#content main .box-info li:nth-child(1) .bx {
-	background: var(--light-blue);
-	color: var(--blue);
+
+.box-info li a {
+    text-decoration: none;
+    color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
-#content main .box-info li:nth-child(2) .bx {
-	background: var(--light-yellow);
-	color: var(--yellow);
+
+.box-info li .text {
+    margin-top: 12px;
 }
-#content main .box-info li:nth-child(3) .bx {
-	background: var(--light-orange);
-	color: var(--orange);
+
+.box-info li .text h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
-#content main .box-info li .text h3 {
-	font-size: 24px;
-	font-weight: 600;
-	color: var(--dark);
+
+.box-info li .text p {
+    margin: 0;
 }
-#content main .box-info li .text p {
-	color: var(--dark);	
+
+/* Estilizando cada ID individualmente */
+#itens {
+    background-color: var(--blue); /* Exemplo de cor de fundo para o item */
+    color: var(--light); /* Exemplo de cor de texto para o item */
 }
+
+#itens {
+    background-color: var(--yellow); /* Exemplo de cor de fundo para o item */
+    color: var(--dark); /* Exemplo de cor de texto para o item */
+}
+
+#itens {
+    background-color: var(--orange); /* Exemplo de cor de fundo para o item */
+    color: var(--light); /* Exemplo de cor de texto para o item */
+}
+
+
+
 
 
 
@@ -589,4 +622,38 @@ body {
 	#content main .table-data .todo .todo-list {
 		min-width: 420px;
 	}
+}
+
+/* Ajustes para telas menores que 768px */
+@media screen and (max-width: 768px) {
+    #sidebar {
+        width: 200px;
+    }
+    #content {
+        width: calc(100% - 200px);
+        left: 200px;
+    }
+    #sidebar.hide {
+        width: 200px; /* Ajuste para o menu oculto */
+    }
+    #sidebar .side-menu li a {
+        width: 200px; /* Ajuste para largura do item do menu lateral */
+    }
+}
+
+/* Ajustes para telas menores que 576px */
+@media screen and (max-width: 576px) {
+    #sidebar {
+        width: 60px;
+    }
+    #content {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+    #sidebar.hide {
+        width: 60px; /* Ajuste para o menu oculto */
+    }
+    #sidebar .side-menu li a {
+        width: 60px; /* Ajuste para largura do item do menu lateral */
+    }
 }

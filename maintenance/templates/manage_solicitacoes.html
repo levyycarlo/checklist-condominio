@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'custom.css' %}">
+    <title>IntelliAdmin</title>
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="{% url 'home' %}" class="brand">
+            <i class='bx bxs-check-circle'></i>
+            <span class="text">IntelliAdmin</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <a href="{% url 'home_dashboard'%}">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'register_checklist' %}">
+                    <i class='bx bx-check'></i>
+                    <span class="text">CheckList</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'logs'%}">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Logs</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="{% url 'home'%}" class="logout">
+                    <i class='bx bxs-log-out-circle'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <a href="#" class="nav-link">Categories</a>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            <i class='bx bx-menu bx-menu-open'></i>
+            <a href="#" class="notification">
+                <i class='bx bxs-bell'></i>
+                <span class="num">8</span>
+            </a>
+            <a href="#" class="profile">
+                <box-icon name='user' color='#007bff'></box-icon>
+            </a>
+        </nav>
+        <!-- NAVBAR -->
+
+        <!-- INFORMAÇÕES REGISTRADAS -->
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2>Informações Registradas<box-icon name='file' type='solid' height="40px"></box-icon></h2>
+                    <br>
+
+                    <!-- Informações do Local -->
+                    <section>
+                        <h3>Local da Ocorrência</h3>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Condomínio</th>
+                                    <td>{{ checklist.condominio }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Torre</th>
+                                    <td>{{ checklist.torre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Andar</th>
+                                    <td>{{ checklist.andar }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Apartamento</th>
+                                    <td>{{ checklist.apartamento }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Informações da Área -->
+                    <section>
+                        <h3>Área da Ocorrência</h3>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Áreas Comuns</th>
+                                    <td>{{ checklist.areas_comuns }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Áreas Externas</th>
+                                    <td>{{ checklist.areas_externas }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Outros</th>
+                                    <td>{{ checklist.outros }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Detalhes da Ocorrência -->
+                    <section>
+                        <h3>Detalhes da Ocorrência</h3>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Prioridade</th>
+                                    <td>{{ checklist.prioridade }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <td>{{ checklist.categoria }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Descrição do Problema</th>
+                                    <td>{{ checklist.descricao_problema }}</td>
+                                </tr>
+                                {% if checklist.upload %}
+                                <tr>
+                                    <th>Imagem registrada:</th>
+                                    
+                                    <td><img src="{{ checklist.upload.url }}" alt="Imagem da Ocorrência" height="200">
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Informações do Autor -->
+                    <section>
+                        <h3>Autor da Ocorrência</h3>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Autor Tipo</th>
+                                    <td>{{ checklist.autor_tipo }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nome do Autor</th>
+                                    <td>{{ checklist.nome_autor }}</td>
+                                </tr>
+                                <tr>
+                                    <th>CPF do Autor</th>
+                                    <td>{{ checklist.cpf_autor }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Outras Informações -->
+                    <section>
+                        <h3>Resolução da Ocorrência</h3>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Data do Checklist</th>
+                                    <td>{{ checklist.data_checklist }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data da Resolução da Ocorrência</th>
+                                    <td>{{ checklist.data_resolucao_ocorrencia }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Como foi resolvida a ocorrência</th>
+                                    <td>{{ checklist.resolucao_ocorrencia }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>{{ checklist.status }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!-- INFORMAÇÕES REGISTRADAS -->
+
+        <!-- Feedbacks de erro ou sucesso! -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}"
+                role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- RESOLUÇÃO DA OCORRÊNCIA -->
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2>Resolução da Ocorrência</h2>
+                    <form action="{% url 'auth_update_checklist' checklist_id=checklist.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="resolucao_ocorrencia">Como foi resolvido:</label>
+                            <textarea class="form-control" id="resolucao_ocorrencia"
+                                name="resolucao_ocorrencia"></textarea>
+                        </div>
+
+                        <!-- Campo oculto para o ID do checklist -->
+                        <input type="hidden" id="checklistId" name="checklistId" value="{{ checklist.id }}">
+                        <!-- Campo oculto para o ID do usuário logado -->
+                        <input type="hidden" id="userId" name="userId" value="{{ request.user.id }}">
+
+                        <label for="status">Status:</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="">Selecione</option>
+                            <option value="concluido">Concluído</option>
+                            <option value="andamento">Em Andamento</option>
+                            <option value="pendente">Pendente</option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <a href="{% url 'solicitacoes_totais' %}">
+                            <button type="button" class="btn btn-danger">Cancelar</button>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- RESOLUÇÃO DA OCORRÊNCIA -->
+
+    </section>
+    <!-- CONTENT -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'modal.js' %}"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="{% static 'app.js' %}"></script>
+</body>
+
+</html>

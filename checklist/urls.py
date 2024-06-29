@@ -1,6 +1,7 @@
 from django.urls import path
 from checklist.views import register_checklist,home_dashboard, auth_checklist
 
+from documents.views import logs
 from frontend.views import home
 
 
@@ -15,5 +16,10 @@ urlpatterns = [
     path('home/dashboard/', home_dashboard, name='home_dashboard'),
 
     # URL para tela de registro de checklist
-    path('register/checklist/', register_checklist, name='register_checklist')
+    path('register/checklist/', register_checklist, name='register_checklist'),
+
+    # URL para autenticar o registro de checklist
+    path('auth/update/checklist/', auth_checklist, name='auth_checklist'),
+
+
 ]
